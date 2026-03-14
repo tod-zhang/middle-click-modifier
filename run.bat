@@ -1,0 +1,6 @@
+@echo off
+title Middle Click Modifier
+echo Installing dependencies...
+python -m pip install pystray pillow -q
+echo Starting Middle Click Modifier...
+pythonw "%~dp0middle_click_modifier.py"
