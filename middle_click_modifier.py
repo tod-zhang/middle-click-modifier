@@ -1,8 +1,8 @@
 """
-Middle Click Modifier - 鼠标中键映射为 Ctrl+Shift
+Middle Click Modifier - 鼠标中键映射为 Ctrl+K
 ====================================================
-按住鼠标中键 = 按住 Left Ctrl + Left Shift
-松开鼠标中键 = 释放 Ctrl + Shift
+按住鼠标中键 = 按住 Left Ctrl + K
+松开鼠标中键 = 释放 Ctrl + K
 
 系统托盘运行，右键托盘图标可切换开机自启动或退出。
 """
@@ -34,7 +34,7 @@ WM_MBUTTONUP = 0x0208
 WM_QUIT = 0x0012
 KEYEVENTF_KEYUP = 0x0002
 VK_LCONTROL = 0xA2
-VK_LSHIFT = 0xA0
+VK_K = 0x4B
 SW_HIDE = 0
 
 ULONG_PTR = ctypes.POINTER(ctypes.c_ulong)
@@ -122,11 +122,11 @@ _hook_callback = None  # prevent GC of the callback
 # ═══════════════════════════════════════════════════════════════════
 def press_modifiers():
     user32.keybd_event(VK_LCONTROL, 0x1D, 0, None)
-    user32.keybd_event(VK_LSHIFT, 0x2A, 0, None)
+    user32.keybd_event(VK_K, 0x25, 0, None)
 
 
 def release_modifiers():
-    user32.keybd_event(VK_LSHIFT, 0x2A, KEYEVENTF_KEYUP, None)
+    user32.keybd_event(VK_K, 0x25, KEYEVENTF_KEYUP, None)
     user32.keybd_event(VK_LCONTROL, 0x1D, KEYEVENTF_KEYUP, None)
 
 
@@ -274,7 +274,7 @@ def build_tray(on_exit_callback):
     return pystray.Icon(
         APP_NAME,
         create_tray_icon_image(),
-        "鼠标中键 → Ctrl+Shift",
+        "鼠标中键 → Ctrl+K",
         menu,
     )
 
